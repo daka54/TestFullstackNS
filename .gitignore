@@ -1,0 +1,42 @@
+# Ignorar archivos generados por Visual Studio
+.vscode/
+*.suo
+*.user
+*.sln.docstates
+
+# Ignorar directorios bin y obj generados por compilación
+**/bin/
+**/obj/
+
+# Ignorar archivos de configuración de usuario
+*.suo
+*.user
+*.sln.docstates
+
+# Ignorar archivos de registro y caché de NuGet
+*.nuget/
+*.nupkg
+*.pfx
+
+# Ignorar archivos de registro y caché de Node.js y npm
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Ignorar archivos de salida de Angular
+dist/
+tmp/
+out-tsc/
+
+# Ignorar archivos de configuración de Angular
+.eag/
+.angular-cli.json
+.angular-cli.json
+.angular-cli.json
+
+# Ignorar archivos de caché de TypeScript
+*.js
+*.map
+
+# Ignorar archivos de usuario
+src/environments/environment.ts

@@ -1,0 +1,81 @@
+<div *ngIf="isDisplayed" class="spinner-overlay">
+  <div class="spinner-container">
+    <div class="spinner-border text-primary" role="status"></div>
+  </div>
+</div>
+
+<body>
+  <header>
+      <h1 class="header-title">FlyR</h1>
+  </header>
+
+  <main>
+      <h2 class="main-title">Looking for flights?</h2>
+
+      <form class="search-form">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <input [(ngModel)]="from" maxlength="3" minlength="3" name="from" type="text" class="form-control"
+                   placeholder="From" oninput="this.value = this.value.toUpperCase()">
+          </div>
+          <div class="form-group col-md-4">
+            <input [(ngModel)]="to" maxlength="3" minlength="3" name="to" type="text" class="form-control"
+                   placeholder="To" oninput="this.value = this.value.toUpperCase()">
+          </div>
+          <div >
+            <select name="myselect" [(ngModel)]="key" >
+              <option *ngFor="let currency of currencyList">{{currency}} </option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <button type="button" (click)="calculateRoute()" class="btn btn-primary"
+                    [disabled]="from.length < 3 || to.length < 3 || from===to"
+                    >Search</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="card mt-4" *ngIf="responseFromApi">
+        <div class="card-body">
+          <h3 class="card-title">Flight Details</h3>
+          <div class="row">
+            <div class="col">
+              <p><strong>Origin:</strong> {{ responseFromApi.data.origin }}</p>
+            </div>
+            <div class="col">
+              <p><strong>Destination:</strong> {{ responseFromApi.data.destination }}</p>
+            </div>
+            <div class="col">
+              <p><strong>Price:</strong> {{ responseFromApi.data.price | currencyType: key | currency}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table *ngIf="flightsList" class="table">
+        <thead class="table-head">
+          <tr>
+            <th>Origin</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th>Flight Carrier</th>
+            <th>Flight Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let flight of flightsList">
+            <td>{{ flight.origin }}</td>
+            <td>{{ flight.destination }}</td>
+            <td>{{ flight.price | currencyType: key | currency}}</td>
+            <td>{{ flight.transport.flightCarrier }}</td>
+            <td>{{ flight.transport.flightNumber }}</td>
+          </tr>
+        </tbody>
+      </table>
+  </main>
+
+  <footer>
+      <p class="footer-text">Camilo Buitrago</p>
+      <p class="footer-text">camilobuitrago1@gmail.com</p>
+  </footer>
+</body>

@@ -1,0 +1,7 @@
+{
+  "/FlightManagement/":{
+    "target": "https://localhost:7160",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}
